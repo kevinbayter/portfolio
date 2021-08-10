@@ -1,4 +1,3 @@
-
 /*
   Theme Name: Folio
   Theme URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
@@ -12,7 +11,7 @@
 body {
   background: #1a201f;
   color: #292929;
-  font-family: 'Poppins', helvetica;
+  font-family: "Poppins", helvetica;
   font-size: 15px;
   font-weight: 300;
   line-height: 20px;
@@ -27,7 +26,12 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
@@ -60,7 +64,8 @@ a:hover {
   transition: all 0.5s ease-in-out 0s;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: #b8a07e;
   text-decoration: underline;
 }
@@ -90,18 +95,17 @@ p {
   line-height: 28px;
 }
 
-input:focus{
+input:focus {
   background-color: #183631 !important;
   transition: all;
   transition-duration: 3s;
 }
 
-textarea:focus{
+textarea:focus {
   background-color: #183631 !important;
   transition: all;
   transition-duration: 3s;
 }
-
 
 ::-moz-selection {
   background: #b8a07e;
@@ -125,12 +129,13 @@ textarea:focus{
   text-transform: uppercase;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
   color: rgb(67, 88, 114);
 }
 
-.cv{
-  min-width: 90%;
+.cv {
+  min-width: 100%;
 }
 
 .padDiv {
@@ -215,7 +220,7 @@ nav {
 nav ul li {
   float: left;
   margin-right: 15px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   margin-left: 40px;
 }
@@ -226,7 +231,7 @@ nav ul li a {
   display: block;
   font-size: 14px;
   color: #999999;
-  font-family: 'Poppins', helvetica;
+  font-family: "Poppins", helvetica;
   font-weight: 500;
   line-height: 16px;
   text-transform: uppercase;
@@ -256,39 +261,39 @@ nav ul li a {
 /*  Header
 /*-----------------------------------------------------------------------------------*/
 /* FONDO VIDEO */
-.contenido__video{
- background: #103326;
- overflow: hidden;
- position: fixed;
- top: 0;
- right: 0;
- bottom: 0;
- left: 0;
- z-index: -1;
+.contenido__video {
+  background: #10332600;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
 /* Estilos para la etiqueta "video" con la calse (.video)  */
-.video{
- position: absolute;
- max-width: 300%;
- width: 100%;
+.video {
+  position: absolute;
+  max-width: 300%;
+  width: 100%;
 }
 
 /* media queries (personalizarlo a su antojo)*/
-@media(max-width: 900px){
- .video{
-  width: 150%;
- }
+@media (max-width: 900px) {
+  .video {
+    width: 150%;
+  }
 }
-@media(max-width: 650px){
- .video{
-  width: 280%;
- }
+@media (max-width: 650px) {
+  .video {
+    width: 280%;
+  }
 }
-@media(max-width: 480px){
- .video{ 
-  width: 300%;
- }
+@media (max-width: 480px) {
+  .video {
+    width: 300%;
+  }
 }
 /*
 #header {
@@ -361,7 +366,7 @@ nav ul li a {
 }
 
 #about .about-descr .p-heading {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 28px;
   text-align: justify;
 }
@@ -404,15 +409,14 @@ nav ul li a {
 }
 
 .services-block i {
-  display:flex;
+  display: flex;
   font-size: 44px;
   color: #b8a07e;
   line-height: 44px;
-  justify-content:center;
+  justify-content: center;
 }
 
-
-.services-carousel  .owl-stage-outer {
+.services-carousel .owl-stage-outer {
   overflow: hidden;
 }
 
@@ -441,7 +445,6 @@ nav ul li a {
   display: none;
 }
 
-
 /*-----------------------------------------------------------------------------------*/
 /*  Portfolio
 /*-----------------------------------------------------------------------------------*/
@@ -449,7 +452,7 @@ nav ul li a {
 #portfolio {
   position: relative;
   padding-bottom: 50px;
-  background-color:#1a201f !important;
+  background-color: #1a201f !important;
 }
 
 #portfolio .portfolio-list {
@@ -468,7 +471,7 @@ nav ul li a {
   color: #999999;
   line-height: 16px;
   cursor: pointer;
-  font-family: 'Poppins', helvetica;
+  font-family: "Poppins", helvetica;
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: capitalize;
@@ -479,7 +482,8 @@ nav ul li a {
   transition: all 0.5s ease-in-out 0s;
 }
 
-#portfolio .portfolio-list .nav li:hover, #portfolio .portfolio-list .nav li.filter-active  {
+#portfolio .portfolio-list .nav li:hover,
+#portfolio .portfolio-list .nav li.filter-active {
   color: #b8a07e;
   -moz-transition: all 0.5s ease-in-out 0s;
   -ms-transition: all 0.5s ease-in-out 0s;
@@ -508,7 +512,8 @@ nav ul li a {
 /*  Journal
 /*-----------------------------------------------------------------------------------*/
 
-#journal,  #journal-blog {
+#journal,
+#journal-blog {
   height: auto;
   width: 100%;
   background: #1a201f;
@@ -576,7 +581,7 @@ nav ul li a {
 #contact {
   height: auto;
   width: 100%;
-  background-color:#1a201f !important;
+  background-color: #1a201f !important;
 }
 
 .contact-details {
@@ -590,12 +595,12 @@ nav ul li a {
   padding-bottom: 10px;
 }
 
-#contact input, #contact textarea {
+#contact input,
+#contact textarea {
   width: 100%;
 }
 
-
-#contact  #sendmessage {
+#contact #sendmessage {
   color: #18d26e;
   border: 1px solid #18d26e;
   display: none;
@@ -605,7 +610,7 @@ nav ul li a {
   margin: 15px;
 }
 
-#contact  #errormessage {
+#contact #errormessage {
   color: red;
   display: none;
   border: 1px solid red;
@@ -615,7 +620,9 @@ nav ul li a {
   margin: 15px;
 }
 
-#contact #sendmessage.show, #contact #errormessage.show, #contact .show {
+#contact #sendmessage.show,
+#contact #errormessage.show,
+#contact .show {
   display: block;
 }
 
@@ -686,5 +693,5 @@ nav ul li a {
 
 .credits {
   font-size: 13px;
-  color:#8f7a7a;
+  color: #8f7a7a;
 }
