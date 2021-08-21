@@ -80,11 +80,11 @@ $(document).ready(function() {
   $(function() {
     typed.typed({
       strings: [
-        "Kevin Bayter..",
-        "Software Developer..",
-        "Designer..",
-        "Freelancer..",
-        "Digital Manager..",
+        "Kevin Bayter",
+        "Software Developer",
+        "Designer",
+        "Freelancer",
+        "Digital Manager",
       ],
       typeSpeed: 100,
       loop: true,
