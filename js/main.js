@@ -82,9 +82,9 @@ $(document).ready(function() {
       strings: [
         "Kevin Bayter",
         "Software Developer",
+        "Physicist",
         "Designer",
         "Freelancer",
-        "Digital Manager",
       ],
       typeSpeed: 100,
       loop: true,
