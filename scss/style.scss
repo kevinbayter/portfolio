@@ -278,16 +278,19 @@ nav ul li a {
     width: 150%;
   }
 }
+
 @media (max-width: 650px) {
   .video {
     width: 280%;
   }
 }
+
 @media (max-width: 480px) {
   .video {
     width: 300%;
   }
 }
+
 /*
 #header {
   background: url("../images/Stars.mp4") repeat scroll center center / cover;
@@ -311,6 +314,13 @@ nav ul li a {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: #fff;
+}
+
+@media (max-width: 580px) {
+  .header-content h1 {
+    font-size: 30px;
+  }
+
 }
 
 .header-content p {
@@ -383,6 +393,7 @@ nav ul li a {
 .owl-item {
   float: left;
 }
+
 .services-block span {
   margin: 10px 0;
   position: relative;
