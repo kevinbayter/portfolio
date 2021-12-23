@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "moyu.snapcode",
-        "github.copilot"
+        "github.copilot",
+        "cweijan.vscode-postgresql-client2"
     ]
 }
