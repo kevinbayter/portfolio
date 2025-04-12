@@ -1,111 +1,164 @@
 import { useState, useEffect } from 'react';
 
-interface ImageGalleryProps {
-  images: {
+// Interfaces separadas y bien definidas
+interface Image {
     src: string;
     alt: string;
-  }[];
-  initialIndex?: number;
-  isOpen: boolean;
-  onClose: () => void;
 }
 
-const ImageGallery = ({ images, initialIndex = 0, isOpen, onClose }: ImageGalleryProps) => {
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+interface ImageGalleryProps {
+    images: Image[];
+    initialIndex?: number;
+    isOpen: boolean;
+    onClose: () => void;
+}
 
-  // Cerrar la galería al presionar Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
+// Hook personalizado para extraer la lógica de navegación
+function useGalleryNavigation(images: Image[], initialIndex: number) {
+    const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+    const navigateToPrevious = () => {
+        setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : images.length - 1));
     };
 
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-      // Bloquear el scroll del body cuando el modal está abierto
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'auto';
+    const navigateToNext = () => {
+        setCurrentIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
     };
-  }, [isOpen, currentIndex, images.length]);
 
-  // Resetear el índice cuando se cierra y vuelve a abrir
-  useEffect(() => {
-    if (isOpen) {
-      setCurrentIndex(initialIndex);
-    }
-  }, [isOpen, initialIndex]);
+    // Reseteo del índice
+    const resetIndex = (index: number) => {
+        setCurrentIndex(index);
+    };
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : images.length - 1));
-  };
+    return {
+        currentIndex,
+        navigateToPrevious,
+        navigateToNext,
+        resetIndex,
+        currentImage: images[currentIndex]
+    };
+}
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
-  };
+// Hook personalizado para manejar eventos y efectos secundarios
+function useGalleryEffects(isOpen: boolean, onClose: () => void, navigateToPrevious: () => void, navigateToNext: () => void) {
+    useEffect(() => {
+        if (!isOpen) return;
 
-  if (!isOpen) return null;
+        const keyActionMap = {
+            'Escape': onClose,
+            'ArrowLeft': navigateToPrevious,
+            'ArrowRight': navigateToNext
+        };
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-      onClick={onClose}
-    >
-      <div
-        className="relative max-w-4xl w-full bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
-        onClick={(e) => e.stopPropagation()} // Evitar que se cierre al hacer clic en el contenedor
-      >
-        <div className="relative">
-          <img
-            src={images[currentIndex].src}
-            alt={images[currentIndex].alt}
-            className="w-full h-auto max-h-[80vh] object-contain"
-          />
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const action = keyActionMap[e.key as keyof typeof keyActionMap];
+            if (action) action();
+        };
 
-          {/* Contador de imágenes */}
-          <div className="absolute bottom-4 left-0 right-0 text-center text-white text-sm">
-            {currentIndex + 1} / {images.length}
-          </div>
+        // Configurar listeners
+        window.addEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'hidden';
 
-          {/* Botones de navegación */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-white transition-all"
-            aria-label={"Previous"}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+        // Limpiar listeners
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'auto';
+        };
+    }, [isOpen, onClose, navigateToPrevious, navigateToNext]);
+}
 
-          <button
-            onClick={handleNext}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-white transition-all"
-            aria-label={"Next"}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Botón para cerrar */}
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-white transition-all"
-          aria-label={"Close"}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+// Componentes de UI simples y pequeños
+const ImageCounter = ({ current, total }: { current: number, total: number }) => (
+    <div className="absolute bottom-4 left-0 right-0 text-center text-white text-sm">
+        {current} / {total}
     </div>
-  );
+);
+
+const NavigationButton = ({
+                              direction,
+                              onClick
+                          }: {
+    direction: 'left' | 'right',
+    onClick: () => void
+}) => {
+    const isRight = direction === 'right';
+    const position = isRight ? 'right-2' : 'left-2';
+    const path = isRight
+        ? "M9 5l7 7-7 7"
+        : "M15 19l-7-7 7-7";
+    const label = isRight ? "Next" : "Previous";
+
+    return (
+        <button
+            onClick={onClick}
+            className={`absolute ${position} top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-white transition-all`}
+            aria-label={label}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={path} />
+            </svg>
+        </button>
+    );
+};
+
+const CloseButton = ({ onClick }: { onClick: () => void }) => (
+    <button
+        onClick={onClick}
+        className="absolute top-2 right-2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 text-white transition-all"
+        aria-label="Close"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+);
+
+// Componente principal simplificado
+const ImageGallery = ({ images, initialIndex = 0, isOpen, onClose }: ImageGalleryProps) => {
+    const {
+        currentIndex,
+        navigateToPrevious,
+        navigateToNext,
+        resetIndex,
+        currentImage
+    } = useGalleryNavigation(images, initialIndex);
+
+    // Uso del hook para manejar efectos secundarios
+    useGalleryEffects(isOpen, onClose, navigateToPrevious, navigateToNext);
+
+    // Resetear el índice cuando cambia isOpen o initialIndex
+    useEffect(() => {
+        if (isOpen) {
+            resetIndex(initialIndex);
+        }
+    }, [isOpen, initialIndex, resetIndex]);
+
+    if (!isOpen) return null;
+
+    return (
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
+            onClick={onClose}
+        >
+            <div
+                className="relative max-w-4xl w-full bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <div className="relative">
+                    <img
+                        src={currentImage.src}
+                        alt={currentImage.alt}
+                        className="w-full h-auto max-h-[80vh] object-contain"
+                    />
+
+                    <ImageCounter current={currentIndex + 1} total={images.length} />
+                    <NavigationButton direction="left" onClick={navigateToPrevious} />
+                    <NavigationButton direction="right" onClick={navigateToNext} />
+                    <CloseButton onClick={onClose} />
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default ImageGallery;
