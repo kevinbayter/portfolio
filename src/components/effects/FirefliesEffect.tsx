@@ -20,8 +20,8 @@ const FirefliesEffect = ({ count }: FirefliesEffectProps) => {
       id: index,
       top: Math.random() * 100,
       left: Math.random() * 100,
-      animationDelay: Math.random() * 4,
-      size: Math.random() * 2 + 2, // Tamaño entre 2px y 4px
+      animationDelay: Math.random() * 2,
+      size: Math.random() * 2 + 2,
     }));
 
     setFireflies(newFireflies);
@@ -39,7 +39,7 @@ const FirefliesEffect = ({ count }: FirefliesEffectProps) => {
             animationDelay: `${firefly.animationDelay}s`,
             width: `${firefly.size}px`,
             height: `${firefly.size}px`,
-            opacity: 0.7,
+            opacity: 0.8,
           }}
         />
       ))}
