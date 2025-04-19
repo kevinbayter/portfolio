@@ -1,4 +1,4 @@
-import { FaServer, FaLightbulb, FaPalette, FaMobile, FaChartLine } from 'react-icons/fa';
+import { FaServer, FaLightbulb, FaPalette, FaMobile, FaChartLine, FaCode } from 'react-icons/fa';
 import { useLanguage } from '../../hooks/useLanguage';
 
 interface ServiceCardProps {
@@ -45,6 +45,11 @@ const Services = () => {
       icon: <FaChartLine />,
       title: t.analytics,
       description: t.analyticsDesc
+    },
+    {
+      icon: <FaCode />,
+      title: t.softwareArchitecture,
+      description: t.softwareArchitectureDesc
     }
   ];
 

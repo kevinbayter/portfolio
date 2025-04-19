@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import ImageGallery from '../common/ImageGallery';
-import Carousel from '../common/Carousel';
-
-// Importar imágenes
 import img00 from '../../assets/images/lifeStyle/00.webp';
 import img01 from '../../assets/images/lifeStyle/01.webp';
 import img02 from '../../assets/images/lifeStyle/02.webp';
@@ -25,29 +22,7 @@ const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [slidesToShow, setSlidesToShow] = useState(3);
 
-  // Ajustar el número de slides según el tamaño de la pantalla
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setSlidesToShow(2);
-      } else if (window.innerWidth < 1024) {
-        setSlidesToShow(3);
-      } else {
-        setSlidesToShow(4);
-      }
-    };
-
-    // Inicializar
-    handleResize();
-
-    // Actualizar al cambiar el tamaño de la ventana
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Actualizar las rutas de las imágenes para usar las importaciones
   const portfolioItems: PortfolioItem[] = [
     {
       id: 1,
@@ -110,28 +85,6 @@ const Portfolio = () => {
     alt: item.alt
   }));
 
-  // Convertir los elementos filtrados en componentes para el carrusel
-  const carouselItems = filteredItems.map((item, index) => (
-    <div key={item.id} className="portfolio-item overflow-hidden rounded-lg shadow-xl border border-gray-700 h-full mx-2">
-      <button
-        className="block w-full h-full relative group"
-        onClick={() => openGallery(index)}
-      >
-        <img
-          src={item.image}
-          alt={item.alt}
-          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-primary bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-          <span className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 px-6 py-3 bg-black/50 rounded-lg">
-            {t.viewImage}
-          </span>
-        </div>
-      </button>
-    </div>
-  ));
-
   return (
     <section id="portfolio" className="py-20 text-center">
       <div className="container mx-auto px-4">
@@ -156,18 +109,30 @@ const Portfolio = () => {
           </ul>
         </div>
 
-        {carouselItems.length > 0 && (
-          <Carousel
-            showControls={false}
-            showIndicators={true}
-            autoPlay={true}
-            interval={2500}
-            slidesToShow={slidesToShow}
-            className="pb-12"
-          >
-            {carouselItems}
-          </Carousel>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map((item, index) => (
+            <div key={item.id} className="group relative overflow-hidden rounded-lg shadow-xl border border-gray-700">
+              <button
+                className="block w-full h-full"
+                onClick={() => openGallery(index)}
+              >
+                <div className="relative aspect-square">
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-primary bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                    <span className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 px-6 py-3 bg-black/50 rounded-lg">
+                      {t.viewImage}
+                    </span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
 
       <ImageGallery

@@ -29,11 +29,13 @@ export interface Translations {
   webDesign: string;
   mobileApps: string;
   analytics: string;
+  softwareArchitecture: string;
   backendDesc: string;
   brandIdentityDesc: string;
   webDesignDesc: string;
   mobileAppsDesc: string;
   analyticsDesc: string;
+  softwareArchitectureDesc: string;
   
   // Portfolio
   myPortfolio: string;
@@ -63,6 +65,7 @@ export interface Translations {
   successMessage: string;
   errorMessage: string;
   connectionError: string;
+  availableForProjects: string;
   
   // Footer
   allRightsReserved: string;
@@ -99,11 +102,13 @@ export const translations: Record<Language, Translations> = {
     webDesign: 'WEB DESIGN',
     mobileApps: 'MOBILE APPS',
     analytics: 'ANALYTICS',
+    softwareArchitecture: 'SOFTWARE ARCHITECTURE',
     backendDesc: 'I can only say that this is my favorite skill.',
     brandIdentityDesc: 'I have my own style and design pattern, using the MERN stack.',
     webDesignDesc: 'I have knowledge in CSS/SASS, Figma and other tools for web design.',
     mobileAppsDesc: 'I started in the mobile programming industry with React Native.',
     analyticsDesc: 'I can position your brand using the most powerful analytics.',
+    softwareArchitectureDesc: 'I design scalable and maintainable software architectures following best practices and design patterns.',
     
     // Portfolio
     myPortfolio: 'My Portfolio',
@@ -133,6 +138,7 @@ export const translations: Record<Language, Translations> = {
     successMessage: 'Your message has been sent! Thank you.',
     errorMessage: 'There was an error sending the message. Please try again.',
     connectionError: 'There was a connection error. Please try again.',
+    availableForProjects: 'Available for new projects',
     
     // Footer
     allRightsReserved: 'All rights reserved',
@@ -167,11 +173,13 @@ export const translations: Record<Language, Translations> = {
     webDesign: 'DISEÑO WEB',
     mobileApps: 'APLICACIONES MÓVILES',
     analytics: 'ANALYTICS',
+    softwareArchitecture: 'ARQUITECTURA DE SOFTWARE',
     backendDesc: 'Solo puedo decir que esta es mi habilidad favorita.',
     brandIdentityDesc: 'Tengo mi propio estilo y patrón de diseño, utilizando el stack MERN.',
     webDesignDesc: 'Tengo conocimientos en CSS/SASS, Figma y otras herramientas para diseño web.',
     mobileAppsDesc: 'Comencé en la industria de programación móvil con React Native.',
     analyticsDesc: 'Puedo posicionar tu marca utilizando las analíticas más potentes.',
+    softwareArchitectureDesc: 'Diseño arquitecturas de software escalables y mantenibles siguiendo las mejores prácticas y patrones de diseño.',
     
     // Portfolio
     myPortfolio: 'Mi Portfolio',
@@ -201,6 +209,7 @@ export const translations: Record<Language, Translations> = {
     successMessage: '¡Tu mensaje ha sido enviado! Gracias.',
     errorMessage: 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.',
     connectionError: 'Hubo un error de conexión. Por favor, inténtalo de nuevo.',
+    availableForProjects: 'Disponible para nuevos proyectos',
     
     // Footer
     allRightsReserved: 'Todos los derechos reservados',

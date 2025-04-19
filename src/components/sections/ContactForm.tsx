@@ -83,7 +83,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 </div>
                 <button
                     type="submit"
-                    className="bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-md transition-all hover:translate-y-[-2px] disabled:bg-gray-600 disabled:hover:translate-y-0"
+                    className="w-full bg-primary hover:bg-primary-dark text-white py-3 px-6 rounded-md transition-all hover:translate-y-[-2px] disabled:bg-gray-600 disabled:hover:translate-y-0"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? t.sending : t.send}

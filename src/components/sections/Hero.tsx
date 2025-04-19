@@ -73,7 +73,7 @@ const Hero = () => {
               <FaFacebook size={20} />
             </a>
             <a 
-              href="https://twitter.com/bcod3r" 
+              href="https://twitter.com/bayterx" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-primary transition-colors bg-black/30 p-3 rounded-full inline-block hover:bg-black/50 border border-white/10 hover:border-primary/50"
