@@ -2,9 +2,25 @@ import { TypeAnimation } from 'react-type-animation';
 import { FaFacebook, FaTwitter, FaYoutube, FaTelegram, FaLinkedin, FaGithub } from 'react-icons/fa';
 import bgImage from '../../assets/images/Bg-bosques.webp';
 import { useLanguage } from '@hooks/useLanguage.tsx';
+import { useMemo, useEffect, useState } from 'react';
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [key, setKey] = useState(0);
+
+  // Forzar el reinicio de la animación cuando cambie el idioma
+  useEffect(() => {
+    setKey(prev => prev + 1);
+  }, [language]);
+
+  const sequence = useMemo(() => [
+    'Kevin Bayter',
+    2000,
+    t.softwareEngineer,
+    2000,
+    t.physicist,
+    2000,
+  ], [t.softwareEngineer, t.physicist]);
 
   return (
     <section 
@@ -26,14 +42,8 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-serif mb-6 font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-primary">
             {t.iAm}{' '}
             <TypeAnimation
-              sequence={[
-                'Kevin Bayter',
-                2000,
-                t.softwareEngineer,
-                2000,
-                t.physicist,
-                2000,
-              ]}
+              key={key}
+              sequence={sequence}
               wrapper="span"
               speed={50}
               repeat={Infinity}

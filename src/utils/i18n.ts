@@ -154,8 +154,8 @@ export const translations: Record<Language, Translations> = {
     
     // Hero
     iAm: 'Soy',
-    developer: 'Desarrollador',
-    softwareEngineer: 'Software Engineer',
+    developer: 'Desarrollador Full Stack',
+    softwareEngineer: 'Ingeniero de Software',
     physicist: 'Físico',
     subtitle: 'Desarrollador Full Stack | Físico | Diseñador',
     contactMe: 'Contáctame',
