@@ -12,7 +12,7 @@ const Layout = () => {
         <meta name="description" content="Kevin Bayter - Full Stack Developer y Arquitecto de Software especializado en desarrollo web, aplicaciones móviles y arquitecturas escalables." />
       </Helmet>
       <Navbar />
-      <FirefliesEffect count={20} />
+      <FirefliesEffect />
       <main>
         <Outlet />
       </main>

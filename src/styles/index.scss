@@ -84,22 +84,225 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Special effects
-.firefly {
+.fireflies-container {
   position: fixed;
-  width: 3px;
-  height: 3px;
-  background-color: rgba(255, 255, 255, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.firefly {
+  position: absolute;
   border-radius: 50%;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
-  animation: firefly 4s linear infinite;
+  box-shadow: 0 0 5px 3px rgba(255, 235, 122, 0.6), 0 0 10px 5px rgba(255, 244, 172, 0.4);
+  background-color: #ffee93;
+  transform-origin: center;
+  pointer-events: none;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
   z-index: 10;
 }
 
-@keyframes firefly {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-150px) translateX(80px); }
+// Animación de parpadeo (se combinará con los patrones de movimiento)
+@keyframes firefly-blink {
+  0%, 100% { 
+    opacity: 0;
+    box-shadow: 0 0 2px 1px rgba(255, 235, 122, 0.1), 0 0 4px 2px rgba(255, 244, 172, 0.05);
+  }
+  50% { 
+    opacity: 1;
+    box-shadow: 0 0 8px 4px rgba(255, 235, 122, 0.8), 0 0 12px 6px rgba(255, 244, 172, 0.6);
+  }
+}
+
+.firefly {
+  animation: firefly-blink 3s ease-in-out infinite;
+  background-color: #ffee93;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 3px rgba(255, 235, 122, 0.6), 0 0 10px 5px rgba(255, 244, 172, 0.4);
+  transform-origin: center;
+  pointer-events: none;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  z-index: 10;
+}
+
+.pattern-1 {
+  animation: firefly-pattern1 20s ease-in-out infinite, firefly-blink 3s ease-in-out infinite;
+}
+
+.pattern-2 {
+  animation: firefly-pattern2 25s ease-in-out infinite, firefly-blink 4s ease-in-out infinite;
+}
+
+.pattern-3 {
+  animation: firefly-pattern3 22s ease-in-out infinite, firefly-blink 2.5s ease-in-out infinite;
+}
+
+.pattern-4 {
+  animation: firefly-pattern4 18s ease-in-out infinite, firefly-blink 5s ease-in-out infinite;
+}
+
+.pattern-5 {
+  animation: firefly-pattern5 24s ease-in-out infinite, firefly-blink 3.5s ease-in-out infinite;
+}
+
+// Patrón 1: Movimiento más aleatorio y amplio
+@keyframes firefly-pattern1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translate(150px, -80px) scale(0.8);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translate(50px, -180px) scale(1.1);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translate(-120px, -100px) scale(0.7);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translate(-150px, 40px) scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+}
+
+// Patrón 2: Movimiento extremadamente errático
+@keyframes firefly-pattern2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  15% {
+    transform: translate(100px, -120px) scale(0.9);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translate(-80px, -90px) scale(1.2);
+    opacity: 0.9;
+  }
+  45% {
+    transform: translate(140px, 60px) scale(0.8);
+    opacity: 0.4;
+  }
+  60% {
+    transform: translate(-110px, 100px) scale(1.1);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(50px, -160px) scale(0.7);
+    opacity: 0.6;
+  }
+  90% {
+    transform: translate(-120px, 20px) scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+}
+
+// Patrón 3: Movimiento en espiral más amplio
+@keyframes firefly-pattern3 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(80px, -80px) scale(0.8) rotate(90deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(0, -160px) scale(1.1) rotate(180deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(-80px, -80px) scale(0.9) rotate(270deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(360deg);
+    opacity: 0.6;
+  }
+}
+
+// Patrón 4: Movimiento zigzag impredecible más extremo
+@keyframes firefly-pattern4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  12.5% {
+    transform: translate(60px, -40px) scale(1.2);
+    opacity: 0.9;
+  }
+  25% {
+    transform: translate(-40px, -100px) scale(0.8);
+    opacity: 0.5;
+  }
+  37.5% {
+    transform: translate(120px, -60px) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(20px, 80px) scale(1.1);
+    opacity: 0.6;
+  }
+  62.5% {
+    transform: translate(-80px, 20px) scale(0.9);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(40px, -140px) scale(0.7);
+    opacity: 0.7;
+  }
+  87.5% {
+    transform: translate(-100px, -40px) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+}
+
+// Patrón 5: Movimiento orbital más definido
+@keyframes firefly-pattern5 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(60px, -60px) scale(0.9) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(0, -120px) scale(0.7) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(-60px, -60px) scale(1.2) rotate(270deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(360deg);
+    opacity: 0.8;
+  }
 }
 
 // Card styles
