@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 import img00 from '../../assets/images/lifeStyle/00.webp';
 import img01 from '../../assets/images/lifeStyle/01.webp';
@@ -136,7 +136,12 @@ const Portfolio = () => {
           }}
           pagination={{ clickable: true }}
           navigation={true}
-          modules={[EffectCoverflow, Pagination, Navigation]}
+          autoplay={{
+            delay: 4000, // Time in ms (e.g., 4 seconds)
+            disableOnInteraction: false, // Autoplay will not be disabled after user interactions (swipes, clicks)
+            pauseOnMouseEnter: true, // Pause autoplay when mouse enters the swiper
+          }}
+          modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
           className="mySwiper w-full py-10"
         >
           {filteredItems.map((item, index) => (

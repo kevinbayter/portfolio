@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { EffectCoverflow, Pagination, Navigation, A11y } from 'swiper/modules';
+import { EffectCoverflow, Pagination, Navigation, A11y, Autoplay } from 'swiper/modules';
 
 // Importar imágenes
 import imgBaytershop from '../../assets/images/baytershop.webp';
@@ -162,7 +162,17 @@ const Projects = () => {
           }}
           pagination={{ clickable: true }}
           navigation={true}
-          modules={[EffectCoverflow, Pagination, Navigation, A11y]}
+          modules={[EffectCoverflow, Pagination, Navigation, A11y, Autoplay]}
+          speed={2500} 
+          autoplay={{
+            delay: 0, 
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          freeMode={{ 
+            enabled: true,
+            momentum: false,
+          }}
           breakpoints={{
             300: {
               slidesPerView: 1,
