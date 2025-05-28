@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // Interfaces separadas y bien definidas
 interface Image {
@@ -17,18 +17,18 @@ interface ImageGalleryProps {
 function useGalleryNavigation(images: Image[], initialIndex: number) {
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-    const navigateToPrevious = () => {
+    const navigateToPrevious = useCallback(() => {
         setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : images.length - 1));
-    };
+    }, [images.length]);
 
-    const navigateToNext = () => {
+    const navigateToNext = useCallback(() => {
         setCurrentIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
-    };
+    }, [images.length]);
 
     // Reseteo del índice
-    const resetIndex = (index: number) => {
+    const resetIndex = useCallback((index: number) => {
         setCurrentIndex(index);
-    };
+    }, []);
 
     return {
         currentIndex,

@@ -1,5 +1,13 @@
 import { useLanguage } from '../../hooks/useLanguage';
 
+// Swiper imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { EffectCoverflow, Pagination, Navigation, A11y } from 'swiper/modules';
+
 // Importar imágenes
 import imgBaytershop from '../../assets/images/baytershop.webp';
 import imgBlogCafe from '../../assets/images/Blog-cafe.webp';
@@ -18,33 +26,32 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ image, title, description, link, viewText }: ProjectCardProps) => {
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all border border-gray-700 hover:translate-y-[-5px] h-full">
-      <a href={link} target="_blank" rel="noopener noreferrer" className="block">
+    <div
+      className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 h-full flex flex-col"
+    >
+      <div onClick={() => window.open(link, '_blank')} className="cursor-pointer flex flex-col flex-grow">
         <div className="relative aspect-video overflow-hidden">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
         </div>
-        <div className="p-6">
+        <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-xl font-semibold mb-3">
             <span className="text-gray-200 hover:text-primary transition-colors">
               {title}
             </span>
           </h3>
-          <p className="text-gray-400 mb-4">{description}</p>
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary font-medium hover:text-primary-dark flex items-center"
+          <p className="text-gray-400 mb-4 flex-grow">{description}</p>
+          <span
+            className="text-primary font-medium hover:text-primary-dark flex items-center self-start mt-auto"
           >
             {viewText} <span className="ml-1">→</span>
-          </a>
+          </span>
         </div>
-      </a>
+      </div>
     </div>
   );
 };
@@ -140,18 +147,65 @@ const Projects = () => {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-serif text-center mb-12 text-gray-100">{t.myProjects}</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Swiper
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          loop={true}
+          slidesPerView={3} 
+          coverflowEffect={{
+            rotate: 30,       
+            stretch: 0,       
+            depth: 200,       
+            modifier: 1,      
+            slideShadows: true 
+          }}
+          pagination={{ clickable: true }}
+          navigation={true}
+          modules={[EffectCoverflow, Pagination, Navigation, A11y]}
+          breakpoints={{
+            300: {
+              slidesPerView: 1,
+              coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+              }
+            },
+            768: {
+              slidesPerView: 2,
+              coverflowEffect: {
+                rotate: 40,
+                stretch: 0,
+                depth: 150,
+                modifier: 1,
+              }
+            },
+            1024: {
+              slidesPerView: 3,
+              coverflowEffect: {
+                rotate: 30,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+              }
+            }
+          }}
+          className="mySwiper w-full py-10"
+        >
           {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              image={project.image}
-              title={project.title}
-              description={project.description}
-              link={project.link}
-              viewText={t.viewProject}
-            />
+            <SwiperSlide key={index} className="h-auto bg-transparent"> 
+              <ProjectCard
+                image={project.image}
+                title={project.title}
+                description={project.description}
+                link={project.link}
+                viewText={t.viewProject}
+              />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );

@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import ImageGallery from '../common/ImageGallery';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+
 import img00 from '../../assets/images/lifeStyle/00.webp';
 import img01 from '../../assets/images/lifeStyle/01.webp';
 import img02 from '../../assets/images/lifeStyle/02.webp';
@@ -85,6 +92,9 @@ const Portfolio = () => {
     alt: item.alt
   }));
 
+  // Ensure Swiper re-initializes when filter changes
+  const swiperKey = activeFilter + '-' + filteredItems.map(item => item.id).join(',');
+
   return (
     <section id="portfolio" className="py-20 text-center">
       <div className="container mx-auto px-4">
@@ -109,30 +119,51 @@ const Portfolio = () => {
           </ul>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Swiper Carousel Implementation */}
+        <Swiper
+          key={swiperKey} // Force re-render on filter change
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={'auto'} // Adjust as needed, 'auto' or a number like 3
+          loop={true} // Optional: for infinite loop
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={{ clickable: true }}
+          navigation={true}
+          modules={[EffectCoverflow, Pagination, Navigation]}
+          className="mySwiper w-full py-10"
+        >
           {filteredItems.map((item, index) => (
-            <div key={item.id} className="group relative overflow-hidden rounded-lg shadow-xl border border-gray-700">
-              <button
-                className="block w-full h-full"
-                onClick={() => openGallery(index)}
-              >
-                <div className="relative aspect-square">
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-primary bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <span className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 px-6 py-3 bg-black/50 rounded-lg">
-                      {t.viewImage}
-                    </span>
+            <SwiperSlide key={item.id} className="w-[300px] md:w-[400px]"> {/* Adjust slide width as needed */}
+              <div className="group relative overflow-hidden rounded-lg shadow-xl border border-gray-700 aspect-square">
+                <button
+                  className="block w-full h-full"
+                  onClick={() => openGallery(index)}
+                >
+                  <div className="relative w-full h-full">
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-primary bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                      <span className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 px-6 py-3 bg-black/50 rounded-lg">
+                        {t.viewImage}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </button>
-            </div>
+                </button>
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
 
       <ImageGallery
