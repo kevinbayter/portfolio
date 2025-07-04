@@ -244,9 +244,10 @@ const BirdBackground: React.FC = () => {
           }
         });
       });
-    }).catch(err => {
+    }).catch(_err => {
+        console.error('PixiJS initialization error:', _err);
         if (appForThisTicker && typeof appForThisTicker.destroy === 'function') {
-            try { appForThisTicker.destroy(true, { children: true, texture: true }); } catch (destroyError) { /* ignore */ }
+            try { appForThisTicker.destroy(true, { children: true, texture: true }); } catch (_destroyErr) { /* ignore */ }
         }
         if (localAppInstance === appForThisTicker) localAppInstance = null;
     });
