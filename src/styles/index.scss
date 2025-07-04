@@ -33,7 +33,7 @@ $font-primary: 'Inter', 'Poppins', sans-serif;
 $font-secondary: 'Playfair Display', serif;
 $font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-// Global Styles
+// Performance optimizations
 * {
   box-sizing: border-box;
   margin: 0;
@@ -42,6 +42,8 @@ $font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
 html {
   scroll-behavior: smooth;
+  // Enable hardware acceleration for better performance
+  transform: translateZ(0);
 }
 
 body {
@@ -51,6 +53,9 @@ body {
   color: $text-primary;
   background: linear-gradient(135deg, $background-color 0%, $background-light 50%, $background-lighter 100%);
   min-height: 100vh;
+  // Enable hardware acceleration
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 a {
@@ -126,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Enhanced Fireflies with Modern Colors
+// Enhanced Fireflies with Modern Colors and Optimized Performance
 .fireflies-container {
   position: fixed;
   top: 0;
@@ -142,19 +147,16 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(circle, $primary-light 0%, $primary-color 70%, transparent 100%);
-  box-shadow: 
-    0 0 8px 2px rgba($primary-color, 0.6), 
-    0 0 16px 4px rgba($primary-light, 0.4),
-    0 0 24px 6px rgba($primary-color, 0.2);
   transform-origin: center;
   pointer-events: none;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-timing-function: ease-in-out;
   z-index: 10;
+  // Performance optimizations
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-// Enhanced firefly animations
+// Separate blink animation (independent of movement)
 @keyframes firefly-blink {
   0%, 100% { 
     opacity: 0.1;
@@ -173,80 +175,56 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.firefly {
-  animation: firefly-blink 3s ease-in-out infinite;
+// Movement patterns (separate from blinking)
+@keyframes firefly-pattern-1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(150px, -80px) rotate(72deg); }
+  40% { transform: translate(50px, -180px) rotate(144deg); }
+  60% { transform: translate(-120px, -100px) rotate(216deg); }
+  80% { transform: translate(-150px, 40px) rotate(288deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-.pattern-1 {
-  animation: firefly-pattern1 20s ease-in-out infinite, firefly-blink 3s ease-in-out infinite;
+@keyframes firefly-pattern-2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(100px, -120px) rotate(54deg); }
+  30% { transform: translate(-80px, -90px) rotate(108deg); }
+  45% { transform: translate(140px, 60px) rotate(162deg); }
+  60% { transform: translate(-110px, 100px) rotate(216deg); }
+  75% { transform: translate(50px, -160px) rotate(270deg); }
+  90% { transform: translate(-120px, 20px) rotate(324deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-.pattern-2 {
-  animation: firefly-pattern2 25s ease-in-out infinite, firefly-blink 4s ease-in-out infinite;
+@keyframes firefly-pattern-3 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(80px, -80px) rotate(90deg); }
+  50% { transform: translate(0, -160px) rotate(180deg); }
+  75% { transform: translate(-80px, -80px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-.pattern-3 {
-  animation: firefly-pattern3 22s ease-in-out infinite, firefly-blink 2.5s ease-in-out infinite;
+@keyframes firefly-pattern-4 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  12.5% { transform: translate(60px, -40px) rotate(45deg); }
+  25% { transform: translate(-40px, -100px) rotate(90deg); }
+  37.5% { transform: translate(120px, -60px) rotate(135deg); }
+  50% { transform: translate(20px, 80px) rotate(180deg); }
+  62.5% { transform: translate(-80px, 20px) rotate(225deg); }
+  75% { transform: translate(40px, -140px) rotate(270deg); }
+  87.5% { transform: translate(-100px, -40px) rotate(315deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-.pattern-4 {
-  animation: firefly-pattern4 18s ease-in-out infinite, firefly-blink 5s ease-in-out infinite;
+@keyframes firefly-pattern-5 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(60px, -60px) rotate(90deg); }
+  50% { transform: translate(0, -120px) rotate(180deg); }
+  75% { transform: translate(-60px, -60px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-.pattern-5 {
-  animation: firefly-pattern5 24s ease-in-out infinite, firefly-blink 3.5s ease-in-out infinite;
-}
-
-// Enhanced movement patterns with modern feel
-@keyframes firefly-pattern1 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.8; }
-  20% { transform: translate(150px, -80px) scale(0.9) rotate(72deg); opacity: 0.6; }
-  40% { transform: translate(50px, -180px) scale(1.1) rotate(144deg); opacity: 0.9; }
-  60% { transform: translate(-120px, -100px) scale(0.8) rotate(216deg); opacity: 0.7; }
-  80% { transform: translate(-150px, 40px) scale(1.0) rotate(288deg); opacity: 0.8; }
-  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.8; }
-}
-
-@keyframes firefly-pattern2 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.7; }
-  15% { transform: translate(100px, -120px) scale(0.9) rotate(54deg); opacity: 0.5; }
-  30% { transform: translate(-80px, -90px) scale(1.2) rotate(108deg); opacity: 0.9; }
-  45% { transform: translate(140px, 60px) scale(0.8) rotate(162deg); opacity: 0.4; }
-  60% { transform: translate(-110px, 100px) scale(1.1) rotate(216deg); opacity: 0.8; }
-  75% { transform: translate(50px, -160px) scale(0.7) rotate(270deg); opacity: 0.6; }
-  90% { transform: translate(-120px, 20px) scale(0.9) rotate(324deg); opacity: 0.7; }
-  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.7; }
-}
-
-@keyframes firefly-pattern3 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.6; }
-  25% { transform: translate(80px, -80px) scale(0.8) rotate(90deg); opacity: 0.9; }
-  50% { transform: translate(0, -160px) scale(1.1) rotate(180deg); opacity: 0.5; }
-  75% { transform: translate(-80px, -80px) scale(0.9) rotate(270deg); opacity: 0.8; }
-  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.6; }
-}
-
-@keyframes firefly-pattern4 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.7; }
-  12.5% { transform: translate(60px, -40px) scale(1.2) rotate(45deg); opacity: 0.9; }
-  25% { transform: translate(-40px, -100px) scale(0.8) rotate(90deg); opacity: 0.5; }
-  37.5% { transform: translate(120px, -60px) scale(1) rotate(135deg); opacity: 0.8; }
-  50% { transform: translate(20px, 80px) scale(1.1) rotate(180deg); opacity: 0.6; }
-  62.5% { transform: translate(-80px, 20px) scale(0.9) rotate(225deg); opacity: 0.9; }
-  75% { transform: translate(40px, -140px) scale(0.7) rotate(270deg); opacity: 0.7; }
-  87.5% { transform: translate(-100px, -40px) scale(1) rotate(315deg); opacity: 0.8; }
-  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.7; }
-}
-
-@keyframes firefly-pattern5 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.8; }
-  25% { transform: translate(60px, -60px) scale(0.9) rotate(90deg); opacity: 0.6; }
-  50% { transform: translate(0, -120px) scale(0.7) rotate(180deg); opacity: 0.9; }
-  75% { transform: translate(-60px, -60px) scale(1.2) rotate(270deg); opacity: 0.7; }
-  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.8; }
-}
-
-// Modern Card Styles
+// Modern Card Styles with Performance Optimization
 .card {
   background: linear-gradient(145deg, $card-bg-color 0%, $card-bg-light 100%);
   border-radius: 1rem;
@@ -256,6 +234,8 @@ h1, h2, h3, h4, h5, h6 {
     0 0 0 1px rgba($primary-color, 0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(10px);
+  // Performance optimization
+  will-change: transform, box-shadow;
   
   &:hover {
     transform: translateY(-8px) scale(1.02);
@@ -287,6 +267,7 @@ img {
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform; // Performance optimization
   }
   
   &:hover img {
@@ -294,7 +275,7 @@ img {
   }
 }
 
-// Swiper Customizations
+// Swiper Customizations with Performance Improvements
 .swiper {
   .swiper-pagination {
     .swiper-pagination-bullet {
@@ -351,6 +332,21 @@ img {
   }
 }
 
+// Performance optimizations for reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .firefly {
+    animation: none !important;
+  }
+}
+
 // Responsive Design Helpers
 @media (max-width: 768px) {
   .container {
@@ -364,6 +360,11 @@ img {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.5rem; }
+  
+  // Reduce fireflies on mobile for performance
+  .fireflies-container .firefly:nth-child(n+8) {
+    display: none;
+  }
 }
 
 // Smooth Scroll Enhancement
