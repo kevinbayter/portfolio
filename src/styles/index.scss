@@ -176,7 +176,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Movement patterns (separate from blinking)
-@keyframes firefly-pattern-1 {
+@keyframes firefly-pattern1 {
   0% { transform: translate(0, 0) rotate(0deg); }
   20% { transform: translate(150px, -80px) rotate(72deg); }
   40% { transform: translate(50px, -180px) rotate(144deg); }
@@ -185,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-@keyframes firefly-pattern-2 {
+@keyframes firefly-pattern2 {
   0% { transform: translate(0, 0) rotate(0deg); }
   15% { transform: translate(100px, -120px) rotate(54deg); }
   30% { transform: translate(-80px, -90px) rotate(108deg); }
@@ -196,7 +196,7 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-@keyframes firefly-pattern-3 {
+@keyframes firefly-pattern3 {
   0% { transform: translate(0, 0) rotate(0deg); }
   25% { transform: translate(80px, -80px) rotate(90deg); }
   50% { transform: translate(0, -160px) rotate(180deg); }
@@ -204,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-@keyframes firefly-pattern-4 {
+@keyframes firefly-pattern4 {
   0% { transform: translate(0, 0) rotate(0deg); }
   12.5% { transform: translate(60px, -40px) rotate(45deg); }
   25% { transform: translate(-40px, -100px) rotate(90deg); }
@@ -216,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-@keyframes firefly-pattern-5 {
+@keyframes firefly-pattern5 {
   0% { transform: translate(0, 0) rotate(0deg); }
   25% { transform: translate(60px, -60px) rotate(90deg); }
   50% { transform: translate(0, -120px) rotate(180deg); }
@@ -401,18 +401,8 @@ html {
   }
 }
 
-.pattern-1 {
-  animation: firefly-pattern-1 20s ease-in-out infinite, firefly-blink 3s ease-in-out infinite;
-}
-.pattern-2 {
-  animation: firefly-pattern-2 25s ease-in-out infinite, firefly-blink 4s ease-in-out infinite;
-}
-.pattern-3 {
-  animation: firefly-pattern-3 22s ease-in-out infinite, firefly-blink 2.5s ease-in-out infinite;
-}
-.pattern-4 {
-  animation: firefly-pattern-4 18s ease-in-out infinite, firefly-blink 5s ease-in-out infinite;
-}
-.pattern-5 {
-  animation: firefly-pattern-5 24s ease-in-out infinite, firefly-blink 3.5s ease-in-out infinite;
-}
+.pattern-1 { animation: firefly-pattern1 20s ease-in-out infinite, firefly-blink 3s ease-in-out infinite; }
+.pattern-2 { animation: firefly-pattern2 25s ease-in-out infinite, firefly-blink 4s ease-in-out infinite; }
+.pattern-3 { animation: firefly-pattern3 22s ease-in-out infinite, firefly-blink 2.5s ease-in-out infinite; }
+.pattern-4 { animation: firefly-pattern4 18s ease-in-out infinite, firefly-blink 5s ease-in-out infinite; }
+.pattern-5 { animation: firefly-pattern5 24s ease-in-out infinite, firefly-blink 3.5s ease-in-out infinite; }
