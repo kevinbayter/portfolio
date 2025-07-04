@@ -15,28 +15,16 @@ const FirefliesEffect: React.FC = () => {
   const [fireflies, setFireflies] = useState<Firefly[]>([]);
 
   const generateFireflies = useCallback(() => {
-    // Genera un número aleatorio entre 15 y 30 luciérnagas
-    const numberOfFireflies = Math.floor(Math.random() * 16) + 15;
+    const numberOfFireflies = Math.floor(Math.random() * 16) + 15; // 15-30
     const newFireflies: Firefly[] = [];
 
     for (let i = 0; i < numberOfFireflies; i++) {
-      // Tamaño entre 2px y 5px
-      const size = Math.random() * 3 + 2;
-      
-      // Posición aleatoria
+      const size = Math.random() * 3 + 2; // 2-5px
       const top = `${Math.random() * 100}%`;
       const left = `${Math.random() * 100}%`;
-      
-      // Duración de animación entre 5s y 15s para movimiento más rápido
-      const animationDuration = `${Math.random() * 10 + 5}s`;
-      
-      // Retraso aleatorio entre 0s y 3s para desincronizar las animaciones
+      const animationDuration = `${Math.random() * 10 + 5}s`; // 5-15s
       const delay = `${Math.random() * 3}s`;
-      
-      // Opacidad base más baja para que el apagado sea más notorio
       const opacity = Math.random() * 0.2 + 0.1;
-      
-      // Patrón de animación aleatorio (1-5)
       const pattern = Math.floor(Math.random() * 5) + 1;
 
       newFireflies.push({
@@ -50,20 +38,13 @@ const FirefliesEffect: React.FC = () => {
         pattern
       });
     }
-
     setFireflies(newFireflies);
   }, []);
 
   useEffect(() => {
-    // Generar luciérnagas al montar el componente
     generateFireflies();
-
-    // Regenerar luciérnagas solo cuando cambie el tamaño de la ventana
     window.addEventListener('resize', generateFireflies);
-    
-    return () => {
-      window.removeEventListener('resize', generateFireflies);
-    };
+    return () => window.removeEventListener('resize', generateFireflies);
   }, [generateFireflies]);
 
   return (
@@ -79,6 +60,7 @@ const FirefliesEffect: React.FC = () => {
             left: firefly.left,
             animationDuration: firefly.animationDuration,
             animationDelay: firefly.delay,
+            opacity: firefly.opacity,
           }}
         />
       ))}

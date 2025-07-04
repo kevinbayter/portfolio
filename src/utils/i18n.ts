@@ -37,9 +37,21 @@ export interface Translations {
   analyticsDesc: string;
   softwareArchitectureDesc: string;
   
-  // Portfolio
+  // Portfolio - Modern Software Development Categories
   myPortfolio: string;
   all: string;
+  webApplications: string;
+  mobileAppsPortfolio: string;
+  apiDesign: string;
+  aiMachineLearning: string;
+  cloudArchitecture: string;
+  devOpsInfrastructure: string;
+  viewDetails: string;
+  liveDemo: string;
+  sourceCode: string;
+  techStack: string;
+  
+  // Legacy Portfolio Categories (kept for compatibility)
   branding: string;
   beauty: string;
   nature: string;
@@ -110,9 +122,21 @@ export const translations: Record<Language, Translations> = {
     analyticsDesc: 'I can position your brand using the most powerful analytics.',
     softwareArchitectureDesc: 'I design scalable and maintainable software architectures following best practices and design patterns.',
     
-    // Portfolio
-    myPortfolio: 'My Portfolio',
-    all: 'All',
+    // Portfolio - Modern Software Development Categories
+    myPortfolio: 'Software Development Portfolio',
+    all: 'All Projects',
+    webApplications: 'Web Applications',
+    mobileAppsPortfolio: 'Mobile Apps',
+    apiDesign: 'API Design',
+    aiMachineLearning: 'AI & Machine Learning',
+    cloudArchitecture: 'Cloud Architecture',
+    devOpsInfrastructure: 'DevOps & Infrastructure',
+    viewDetails: 'View Details',
+    liveDemo: 'Live Demo',
+    sourceCode: 'Source Code',
+    techStack: 'Tech Stack',
+    
+    // Legacy Portfolio Categories (kept for compatibility)
     branding: 'Branding',
     beauty: 'Beauty',
     nature: 'Nature',
@@ -181,9 +205,21 @@ export const translations: Record<Language, Translations> = {
     analyticsDesc: 'Puedo posicionar tu marca utilizando las analíticas más potentes.',
     softwareArchitectureDesc: 'Diseño arquitecturas de software escalables y mantenibles siguiendo las mejores prácticas y patrones de diseño.',
     
-    // Portfolio
-    myPortfolio: 'Mi Portfolio',
-    all: 'Todos',
+    // Portfolio - Modern Software Development Categories
+    myPortfolio: 'Portfolio de Desarrollo de Software',
+    all: 'Todos los Proyectos',
+    webApplications: 'Aplicaciones Web',
+    mobileAppsPortfolio: 'Apps Móviles',
+    apiDesign: 'Diseño de APIs',
+    aiMachineLearning: 'IA y Machine Learning',
+    cloudArchitecture: 'Arquitectura en la Nube',
+    devOpsInfrastructure: 'DevOps e Infraestructura',
+    viewDetails: 'Ver Detalles',
+    liveDemo: 'Demo en Vivo',
+    sourceCode: 'Código Fuente',
+    techStack: 'Stack Tecnológico',
+    
+    // Legacy Portfolio Categories (kept for compatibility)
     branding: 'Branding',
     beauty: 'Belleza',
     nature: 'Naturaleza',
