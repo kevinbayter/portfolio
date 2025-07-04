@@ -54,15 +54,7 @@ const FirefliesBackground: React.FC = () => {
             top: `${firefly.y}%`,
             width: `${firefly.size}px`,
             height: `${firefly.size}px`,
-            '--move-duration': `${firefly.moveDuration}s`,
-            '--blink-duration': `${firefly.blinkDuration}s`,
-            '--move-delay': `${firefly.moveDelay}s`,
-            '--blink-delay': `${firefly.blinkDelay}s`,
-            animationName: `firefly-${firefly.pattern}, firefly-blink`,
-            animationDuration: `var(--move-duration), var(--blink-duration)`,
-            animationDelay: `var(--move-delay), var(--blink-delay)`,
-            animationIterationCount: 'infinite, infinite',
-            animationTimingFunction: 'ease-in-out, ease-in-out'
+            // Only positioning and size; animations handled by CSS classes
           } as React.CSSProperties}
         />
       ))}

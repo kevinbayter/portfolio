@@ -400,3 +400,19 @@ html {
     background: linear-gradient(180deg, $primary-light 0%, $primary-color 100%);
   }
 }
+
+.pattern-1 {
+  animation: firefly-pattern-1 20s ease-in-out infinite, firefly-blink 3s ease-in-out infinite;
+}
+.pattern-2 {
+  animation: firefly-pattern-2 25s ease-in-out infinite, firefly-blink 4s ease-in-out infinite;
+}
+.pattern-3 {
+  animation: firefly-pattern-3 22s ease-in-out infinite, firefly-blink 2.5s ease-in-out infinite;
+}
+.pattern-4 {
+  animation: firefly-pattern-4 18s ease-in-out infinite, firefly-blink 5s ease-in-out infinite;
+}
+.pattern-5 {
+  animation: firefly-pattern-5 24s ease-in-out infinite, firefly-blink 3.5s ease-in-out infinite;
+}
